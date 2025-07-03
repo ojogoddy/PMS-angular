@@ -1,0 +1,52 @@
+<div class="bg-white p-4 rounded-lg shadow-sm border space-y-4">
+    <div class="flex items-center gap-2 mb-4">
+        <svg class="w-5 h-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+        </svg>
+        <h3 class="font-semibold text-gray-900">Filters & Search</h3>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div class="relative">
+            <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input [(ngModel)]="searchTerm" (ngModelChange)="searchChange.emit($event)"
+                placeholder="Search properties..."
+                class="pl-10 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <select [(ngModel)]="typeFilter" (ngModelChange)="typeFilterChange.emit($event)"
+            class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="all">All Types</option>
+            <option value="apartment">Apartment</option>
+            <option value="house">House</option>
+            <option value="condo">Condo</option>
+            <option value="commercial">Commercial</option>
+        </select>
+        <select [(ngModel)]="locationFilter" (ngModelChange)="locationFilterChange.emit($event)"
+            class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="all">All Locations</option>
+            <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+        </select>
+        <select [(ngModel)]="sortBy" (ngModelChange)="sortChange.emit($event)"
+            class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="name">Name</option>
+            <option value="price-asc">Price (Low to High)</option>
+            <option value="price-desc">Price (High to Low)</option>
+            <option value="location">Location</option>
+            <option value="newest">Newest First</option>
+        </select>
+        <button (click)="exportCSV.emit()"
+            class="w-full bg-gray-200 text-gray-700 p-2 rounded-md hover:bg-gray-300 flex items-center justify-center">
+            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            Export CSV
+        </button>
+    </div>
+    </div>

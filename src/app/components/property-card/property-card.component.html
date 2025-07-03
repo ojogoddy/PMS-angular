@@ -1,0 +1,72 @@
+<div class="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 bg-white">
+    <div class="h-48 bg-gray-200 overflow-hidden">
+        <ng-container *ngIf="property.imageUrl; else noImage">
+            <img [src]="property.imageUrl" [alt]="property.name"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+        </ng-container>
+        <ng-template #noImage>
+            <div class="w-full h-full flex items-center justify-center text-gray-400">
+                <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h16v16H4z" />
+                </svg>
+            </div>
+        </ng-template>
+    </div>
+    <div class="p-4">
+        <div class="flex justify-between items-start">
+            <h3 class="text-lg font-semibold text-gray-900 truncate">{{ property.name }}</h3>
+            <span
+                class="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-gray-100 text-gray-800 capitalize">
+                {{ property.type }}
+            </span>
+        </div>
+        <div class="flex items-center text-gray-600 text-sm mt-1">
+            <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+            </svg>
+            {{ property.location }}
+        </div>
+        <div class="text-2xl font-bold text-gray-900 mt-3 mb-3">
+            ₦{{ property.price.toLocaleString() }}/month
+        </div>
+        <div class="flex items-center gap-4 text-sm text-gray-600 mb-3">
+            <div class="flex items-center">
+                <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                {{ property.bedrooms }} bed
+            </div>
+            <div class="flex items-center">
+                <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 6h12v12H6z" />
+                </svg>
+                {{ property.bathrooms }} bath
+            </div>
+            <div class="flex items-center">
+                <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h16v16H4z" />
+                </svg>
+                {{ property.area }} sq ft
+            </div>
+        </div>
+        <p class="text-gray-600 text-sm line-clamp-2 mb-4">{{ property.description }}</p>
+        <div *ngIf="isAdmin()" class="flex gap-2">
+            <button (click)="onEdit()"
+                class="flex-1 bg-gray-200 text-gray-700 p-2 rounded-md hover:bg-gray-300 text-sm">
+               
+                Edit
+            </button>
+            <button (click)="onDelete()" class="flex-1 bg-red-500 text-white p-2 rounded-md hover:bg-red-600 text-sm">
+               
+                Delete
+            </button>
+        </div>
+    </div>
+    </div>

@@ -1,0 +1,97 @@
+<div class="min-h-screen bg-gray-50">
+    <!-- Header -->
+    <app-navbar [user] = "user"></app-navbar>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- dashboard analytics -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <app-analytics-card
+            *ngFor="let card of analyticsCards"
+            [title] = "card.title"
+            [value] = "card.value()"
+            [subtitle] = "card.subtitle"
+            >
+            </app-analytics-card>
+          </div>
+        <!-- Filters -->
+        <app-property-filters 
+            [searchTerm]="searchTerm" 
+            [typeFilter]="typeFilter" 
+            [locationFilter]="locationFilter"
+            [sortBy]="sortBy" 
+            [locations]="uniqueLocations" 
+            (searchChange)="onSearchChange($event)"
+            (typeFilterChange)="onTypeFilterChange($event)" 
+            (locationFilterChange)="onLocationFilterChange($event)"
+            (sortChange)="onSortChange($event)" 
+            (exportCSV)="onExportCSV()">
+        </app-property-filters>
+
+        <!-- Stats and Add Button -->
+        <div class="flex justify-between items-center mt-6 mb-6">
+            <div class="text-sm text-gray-600">
+                Showing {{ (currentPage - 1) * itemsPerPage + 1 }}-{{ (currentPage - 1) * itemsPerPage +
+                paginatedProperties.length }} of {{ filteredAndSortedProperties.length }} properties
+            </div>
+            <button *ngIf="isAdmin()" (click)="openPropertyForm()"
+                class=" text-white p-2 rounded-md hover:bg-gray-900 bg-black flex items-center">
+                <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                Add Property
+            </button>
+        </div>
+        <app-property-form
+            *ngIf="showPropertyForm"
+            [property]="selectedProperty"
+            (close)="closePropertyForm()"
+            (saved)="saved()">
+        </app-property-form>
+
+        <!-- Properties Grid -->
+        <div *ngIf="paginatedProperties.length === 0" class="bg-white p-4 rounded-lg shadow-sm border">
+            <p class="text-gray-600">No properties found matching your criteria.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" *ngIf="paginatedProperties.length > 0">
+            <app-property-card 
+            *ngFor="let property of paginatedProperties" 
+            [property]="property"
+            (edit)="onEditProperty($event)" 
+            (delete)="onDeleteProperty($event)"
+            ></app-property-card>
+        </div>
+        <!-- Delete Confirmation Modal -->
+        <div *ngIf="modalOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+            <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+                <h2 class="text-lg font-semibold mb-4 text-gray-800">Confirm Delete</h2>
+                <p class="mb-6 text-gray-600">Are you sure you want to delete this property?</p>
+                <div class="flex w-full gap-2">
+                    <button (click)="closeDeleteModal()"
+                        class="px-4 py-2 rounded bg-gray-200 text-gray-700 hover:bg-gray-300 w-full">Cancel</button>
+                    <button (click)="confirmDelete()"
+                        class="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 w-full">Delete</button>
+                </div>
+            </div>
+            </div>
+
+        <!-- Pagination -->
+        <div *ngIf="totalPages > 1" class="flex justify-center mt-8 gap-2">
+            <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1"
+                class="bg-gray-200 text-gray-700 p-2 rounded-md hover:bg-gray-300 disabled:bg-gray-100">
+                Previous
+            </button>
+            <button 
+                *ngFor="let page of totalPagesArray" 
+                (click)="onPageChange(page)" 
+                class="w-10 p-2 rounded-md"
+                [ngClass]="currentPage === page ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'">
+                {{ page }}
+            </button>
+            <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === totalPages"
+                class="bg-gray-200 text-gray-700 p-2 rounded-md hover:bg-gray-300 disabled:bg-gray-100">
+                Next
+            </button>
+        </div>
+    </div>
+    </div>

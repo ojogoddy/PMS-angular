@@ -1,0 +1,7 @@
+/* Minimal CSS to supplement Tailwind */
+
+
+select option:disabled {
+    color: #6b7280;
+    /* Tailwind gray-500 */ 
+}

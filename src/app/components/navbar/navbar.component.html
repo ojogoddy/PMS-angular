@@ -1,0 +1,33 @@
+<header class="bg-white shadow-sm border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-900">Property Management</h1>
+                <p class="text-sm text-gray-600">Manage your property portfolio</p>
+            </div>
+            <div class="flex items-center gap-4 relative">
+                <div class="flex items-center gap-2">
+                    <span
+                        class="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium cursor-pointer select-none"
+                        [ngClass]="user?.role === 'Admin' ? 'bg-blue-50 text-gray-900' : 'bg-gray-100 text-gray-800'"
+                        (click)="toggleDropdown()"
+                        tabindex="0" 
+                        >
+                        {{ user?.role }}
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </span>
+                    <!-- Dropdown -->
+                    <div *ngIf="dropdownOpen"
+                        class="absolute right-0 mt-20 w-32 bg-white border rounded shadow-lg z-50">
+                        <button (click)="logout();"
+                            class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
