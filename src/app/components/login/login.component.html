@@ -1,51 +1,8 @@
-<!-- <div class="min-h-screen flex items-center justify-center bg-gray-100">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-       <div class="text-center mb-6">
-        <p>Welcome to</p>
-        <h1 class="text-2xl font-bold ">Property Management System</h1>
-        <h2>Please login your account</h2>
-       </div>
-
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
-            <div>
-                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                <input id="username" type="text" formControlName="username"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Enter username"
-                    [class.border-red-500]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" />
-                <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
-                    class="text-red-500 text-sm mt-1">
-                    Username is required
-                </div>
-            </div>
-
-            <div class="pb-6">
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                <input id="password" type="password" formControlName="password"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Enter password"
-                    [class.border-red-500]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" />
-                <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
-                    class="text-red-500 text-sm mt-1">
-                    Password is required
-                </div>
-            </div>
-
-
-            <button type="submit"
-                class="w-full bg-black text-white p-2 mt-10 rounded-md hover:bg-gray-900 disabled:bg-gray-400"
-                [disabled]="loginForm.invalid">
-                Login
-            </button>
-        </form>
-    </div>
-    </div> -->
-
     <div class="min-h-screen flex bg-black">
-        <div class="flex w-full bg-white shadow-lg overflow-hidden">
+        <div class="flex w-full bg-gradient-to-r from-blue-50 to-gray-50 shadow-lg overflow-hidden">
             <!-- Left: Image & Branding -->
-            <div class="p-4 w-full md:w-1/2 flex items-center h-screen justify-center rounded-lg overflow-hidden">
-                <div class="hidden rounded-lg md:flex md:w-1/2 flex-1 h-full relative bg-gray-900 overflow-hidden">
+            <div class="p-4 w-full md:w-1/2 hidden lg:flex items-center h-screen justify-center rounded-lg overflow-hidden">
+                <div class=" rounded-lg  md:w-1/2 flex-1 h-full relative bg-gray-900 overflow-hidden">
                     <img src="./login.jpg"
                         alt="Property" class="object-cover w-full h-full opacity-80" />
                   
