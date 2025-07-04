@@ -9,6 +9,6 @@ export interface Property {
     area: number;
     description: string;
     imageUrl?: string;
-    createdAt: string; // ISO date string, e.g., '2025-06-30T14:00:00Z'
-    updatedAt: string; // ISO date string
+    createdAt: string; 
+    updatedAt: string; 
   }
