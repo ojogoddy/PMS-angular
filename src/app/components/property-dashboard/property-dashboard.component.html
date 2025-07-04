@@ -85,7 +85,7 @@
                 *ngFor="let page of totalPagesArray" 
                 (click)="onPageChange(page)" 
                 class="w-10 p-2 rounded-md"
-                [ngClass]="currentPage === page ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'">
+                [ngClass]="currentPage === page ? 'bg-black text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'">
                 {{ page }}
             </button>
             <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === totalPages"

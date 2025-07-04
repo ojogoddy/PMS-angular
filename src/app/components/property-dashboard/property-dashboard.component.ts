@@ -140,22 +140,17 @@ export class PropertyDashboardComponent implements OnInit {
         if (this.selectedProperty) {
             // Edit mode
             this.propertyService.updateProperty(this.selectedProperty.id, result).subscribe(updated => {
-                // this.properties = this.properties.map(p => p.id === this.selectedProperty?.id ? updated : p);
                 this.closePropertyForm();
                 this.loadProperties()
                 this.toastr.success('Property updated successfully', 'Success');
-                // this.updateFilteredAndSortedProperties();
                
             });
         } else {
             // Create mode
             this.propertyService.createProperty(result).subscribe(newProperty => {
-                // this.properties = [...this.properties, newProperty];
                 this.closePropertyForm();
                 this.loadProperties()
-                this.toastr.success('Property created successfully', 'Success');
-                // this.updateFilteredAndSortedProperties();
-                
+                this.toastr.success('Property created successfully', 'Success');                
                 
             });
         }
@@ -238,33 +233,6 @@ export class PropertyDashboardComponent implements OnInit {
         this.currentPage = page;
         this.updatePaginatedProperties();
     }
-
-    // openPropertyForm(property?: Property): void {
-    //     const dialogRef = this.dialog.open(PropertyFormComponent, {
-    //         width: '80rem',
-    //         maxHeight: '90vh',
-    //         panelClass: 'overflow-y-auto',
-    //         data: { property }
-    //     });
-
-    //     dialogRef.afterClosed().subscribe(result => {
-    //         if (result) {
-    //             if (property) {
-    //                 this.propertyService.updateProperty(property.id, result).subscribe(updated => {
-    //                     this.properties = this.properties.map(p => p.id === property.id ? updated : p);
-    //                     this.toastr.success('Property updated successfully', 'Success');
-    //                     this.updateFilteredAndSortedProperties();
-    //                 });
-    //             } else {
-    //                 this.propertyService.createProperty(result).subscribe(newProperty => {
-    //                     this.properties = [...this.properties, newProperty];
-    //                     this.toastr.success('Property created successfully', 'Success');
-    //                     this.updateFilteredAndSortedProperties();
-    //                 });
-    //             }
-    //         }
-    //     });
-    // }
 
     onEditProperty(property: Property): void {
         this.openPropertyForm(property);

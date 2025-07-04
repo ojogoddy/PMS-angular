@@ -14,6 +14,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     errorMessage: string | null = null;
+    showPassword = false;
 
     constructor(
         private fb: FormBuilder,
